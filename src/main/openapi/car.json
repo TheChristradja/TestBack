@@ -1,0 +1,151 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Title",
+    "description": "Title",
+    "version": "1.0.0"
+  },
+
+  "paths": {
+    "/car": {
+      "put": {
+        "tags": [
+          "Car Router"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/car/{carID}": {
+      "get": {
+        "tags": [
+          "Car Router"
+        ],
+        "parameters": [
+          {
+            "name": "carID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Car"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/car/{carID}/move": {
+      "post": {
+        "tags": [
+          "Car Router"
+        ],
+        "parameters": [
+          {
+            "name": "carID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CarDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/hello": {
+      "get": {
+        "tags": [
+          "Greeting Resource"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Car": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "y": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "fuel": {
+            "format": "float",
+            "type": "number"
+          },
+          "direction": {
+            "format": "float",
+            "type": "number"
+          }
+        }
+      },
+      "CarDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "instruction": {
+            "$ref": "#/components/schemas/InstructionEnum"
+          }
+        }
+      },
+      "InstructionEnum": {
+        "enum": [
+          "FORWARD",
+          "BACKWARD",
+          "LEFT",
+          "RIGHT"
+        ],
+        "type": "string"
+      }
+    }
+  }
+}
+
