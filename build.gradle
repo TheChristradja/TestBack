@@ -12,6 +12,7 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.30'
     implementation 'io.quarkiverse.openapi.generator:quarkus-openapi-generator:2.4.1'
     implementation 'io.quarkus:quarkus-smallrye-openapi'
+    implementation 'io.quarkus:quarkus-rest-client-jackson'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-resteasy-reactive'
